@@ -83,9 +83,23 @@
       );
     }
  
+    function Cat({name}) {
+      return (
+        <>
+          <h1>The cat's name is {name}</h1>
+          <p>He's good.</p>
+        </>
+      );
+    }
+
     // Menuコンポーネントを描画する
     ReactDOM.render(
-      <Menu recipes={data} title="Delicious Recipes" />,
+      (
+        <>
+          <Menu recipes={data} title="Delicious Recipes" />
+          <Cat name="Tom" />
+        </>
+      ),
       document.getElementById("root")
     );
   </script>
