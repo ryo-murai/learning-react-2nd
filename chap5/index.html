@@ -49,43 +49,37 @@
     }
     ];
 
-    function Menu(props) {
+    function Menu({title, recipes}) {
       return (
         <article>
           <header>
-            <h1>{props.name}</h1>
+            <h1>{title}</h1>
           </header>
           <div className="recipes">
-            {props.recipes.map((recipe, i) => (
-              <Recipe key={i}
-                name={recipe.name}
-                ingredients={recipe.ingredients}
-                steps={recipe.steps}
-            /> ))}
+            {recipes.map((recipe, i) => (
+              <Recipe key={i} {...recipe}/>
+            ))}
             </div>
         </article>
       );
     }
 
-    function Recipe(props) {
+    function Recipe({name, ingredients, steps}) {
       return (
-        <div className="recipe">
-          <h2>{props.name}</h2>
-          <h3>Ingredients</h3>
-          <ul>
-            {props.ingredients.map((ingredient, i) => (
-              <li key={i}>
-                {ingredient.amount} {ingredient.measurement} {ingredient.name}
-              </li>
+        <section id={name.toLowerCase().replace(/ /g, "-")}>
+          <h1>{name}</h1>
+          <ul className="ingredients">
+            {ingredients.map((ingredient, i) => (
+              <li key={i}>{ingredient.name}</li>
             ))}
           </ul>
-          <h3>Steps</h3>
-          <ol>
-            {props.steps.map((step, i) => (
-              <li key={i}>{step}</li>
+          <section className="instructions">
+            <h2>Cooking Instructions</h2>
+            {steps.map((step, i) => (
+              <p key={i}>{step}</p>
             ))}
-          </ol>
-        </div>
+          </section>
+        </section>
       );
     }
  
