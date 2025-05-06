@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Ingredient({ name, measurement, unit }) {
+export default function Ingredient({ name, amount, measurement }) {
   return (
     <li>
-      {name} - {measurement} {unit}
+      {name} - {amount} {measurement}
     </li>
   );
 }
