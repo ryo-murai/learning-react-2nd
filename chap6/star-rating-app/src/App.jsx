@@ -5,7 +5,8 @@ import './App.css'
 import StarRating from './components/StarRating'
 import colorData from './data/color-data.json'
 import ColorList from './components/ColorList'
-import Color from './components/Color'
+import AddColorForm from './components/AddColorForm'
+import { v4 } from 'uuid'
 
 function App() {
   const [colors, setColors] = useState(colorData)
@@ -34,6 +35,18 @@ function App() {
           onDoubleClick={e => alert("Star rating double clicked!")}
         />
       </div>
+      <AddColorForm
+        onNewColor={(title, color) => {
+          const newColors = [
+            ...colors, {
+              id: v4(),
+              rating: 0,
+              title,
+              color
+            }];
+          setColors(newColors);
+        }}
+      />
       <ColorList
         colors={colors}
         onRateColor={(id, rating) => {
