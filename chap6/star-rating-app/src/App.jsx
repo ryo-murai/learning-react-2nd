@@ -8,7 +8,7 @@ import ColorList from './components/ColorList'
 import Color from './components/Color'
 
 function App() {
-  const [colors] = useState(colorData)
+  const [colors, setColors] = useState(colorData)
   const [count, setCount] = useState(0)
 
   return (
@@ -34,7 +34,13 @@ function App() {
           onDoubleClick={e => alert("Star rating double clicked!")}
         />
       </div>
-      <ColorList colors={colors} />
+      <ColorList
+        colors={colors}
+        onRemoveColor={id => {
+          const newColors = colors.filter(color => color.id !== id);
+          setColors(newColors);
+        }}
+      />
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
