@@ -2,9 +2,13 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import Color from './components/Color.jsx';
+import ColorProvider from './ColorProvider.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+  <ColorProvider>
+    <StrictMode>
+      <App />
+    </StrictMode>
+  </ColorProvider>
 )
