@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Checkbox from './components/Checkbox'
 import { use } from 'react';
+import ConsoleOutPanel from './components/ConsoleOutPanel';
+import WordCount from './components/WordCount';
 
 function App() {
   const [val, set] = useState("");
@@ -48,6 +50,10 @@ function App() {
         />
         <button onClick={createPhrase}>send</button>
       </div>
+      <div>
+        <ConsoleOutPanel />
+      </div>
+      <WordCount>You are not going to believe this but...</WordCount>
 
     </>
   )
