@@ -6,6 +6,7 @@ import Checkbox from './components/Checkbox'
 import { use } from 'react';
 import ConsoleOutPanel from './components/ConsoleOutPanel';
 import WordCount from './components/WordCount';
+import UseLayoutEffectPanel from './components/UseLayoutEffectPanel';
 
 function App() {
   const [val, set] = useState("");
@@ -53,8 +54,12 @@ function App() {
       <div>
         <ConsoleOutPanel />
       </div>
-      <WordCount>You are not going to believe this but...</WordCount>
-
+      <div>
+        <WordCount>You are not going to believe this but...</WordCount>
+      </div>
+      <div>
+        <UseLayoutEffectPanel />
+      </div>
     </>
   )
 }
