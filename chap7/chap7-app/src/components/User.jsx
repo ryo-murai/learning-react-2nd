@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 
 const firstUser = {
   id: "0391-3233-3201",
@@ -11,7 +11,7 @@ const firstUser = {
 };
 
 export default function User() {
-  const [user, setUser] = useState(firstUser);
+  const [user, setUser] = useReducer((user, props) => ({ ...user, ...props }), firstUser);
 
   return (
     <div>
@@ -22,7 +22,7 @@ export default function User() {
       <p>
         Location: {user.city}, {user.state}
       </p>
-      <button onClick={() => setUser({ ...user, admin: true })}>
+      <button onClick={() => setUser({ admin: !user.admin })}>
         Make Admin
       </button>
     </div>
