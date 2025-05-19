@@ -3,10 +3,10 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Checkbox from './components/Checkbox'
-import { use } from 'react';
 import ConsoleOutPanel from './components/ConsoleOutPanel';
 import WordCount from './components/WordCount';
 import UseLayoutEffectPanel from './components/UseLayoutEffectPanel';
+import User from './components/User';
 
 function App() {
   const [val, set] = useState("");
@@ -59,6 +59,9 @@ function App() {
       </div>
       <div>
         <UseLayoutEffectPanel />
+      </div>
+      <div>
+        <User />
       </div>
     </>
   )
