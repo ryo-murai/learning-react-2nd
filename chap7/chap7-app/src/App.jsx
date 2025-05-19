@@ -41,7 +41,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div>
-        {/* <Checkbox /> */}
+        <Checkbox />
       </div>
       <div>
         <label>Favorite phrase:</label> <input
