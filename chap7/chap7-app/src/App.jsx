@@ -7,6 +7,7 @@ import ConsoleOutPanel from './components/ConsoleOutPanel';
 import WordCount from './components/WordCount';
 import UseLayoutEffectPanel from './components/UseLayoutEffectPanel';
 import User from './components/User';
+import Cats from './components/Cats';
 
 function App() {
   const [val, set] = useState("");
@@ -62,6 +63,9 @@ function App() {
       </div>
       <div>
         <User />
+      </div>
+      <div>
+        <Cats />
       </div>
     </>
   )
