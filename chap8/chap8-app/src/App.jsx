@@ -1,14 +1,13 @@
-import { useState } from 'react'
 import './App.css'
 import FetchApi from './components/FetchApi'
-import GitHubUser from './components/GitHubUser'
+import GitHubUser, { GitHubUserCache } from './components/GitHubUser'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <FetchApi />
+      <GitHubUserCache login="moonhighway" />
       <GitHubUser login="moonhighway" />
     </>
   )
