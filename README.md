@@ -45,5 +45,46 @@ https://github.com/facebook/create-react-app/pull/17003
 なお、書籍では *.js に対してJSXトランスパイルを設定する前提だが viteだと *.jsxでないといけない。なので JSXを含むファイルは拡張子を .jsx に読み替えて実施
 
 
+#### `faker` が非推奨になった
 
+8.4.2章で登場
 
+##### 書籍
+```sh
+$ npm i faker
+```
+
+```javascript
+import faker from "faker";
+
+// 中略
+
+const bigList = [...Array(5000)].map(() => ({
+  name: faker.name.findName(),
+  email: faker.internet.email(),
+  avatar: faker.internet.avatar()
+}));
+```
+
+##### 修正版
+```sh
+$ npm i @faker-js/faker
+```
+
+```javascript
+import { faker } from '@faker-js/faker'
+
+// 中略
+
+const bigList = [...Array(5000)].map(() => ({
+  name: faker.person.fullName(),
+  email: faker.internet.email(),
+  avatar: faker.image.avatar(),
+}));
+```
+
+* 参考1 Faker.js公式
+  - https://www.npmjs.com/package/@faker-js/faker
+  - https://fakerjs.dev/guide/usage.html
+* 参考2 非推奨の経緯
+  - [colorsやfakerといったnpmパッケージの悪意あるコードが公開された事件について](https://qiita.com/SnykSec/items/23bcd8dc873239d2bece)
