@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useFetch } from '../hooks/useFetch';
 
 const storage = localStorage;
 
@@ -7,29 +8,7 @@ const loadJSON = key => key && JSON.parse(storage.getItem(key));
 const saveJSON = (key, value) => storage.setItem(key, JSON.stringify(value));
 
 export default function GitHubUser({ login }) {
-  const [data, setData] = useState();
-  const [error, setError] = useState();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (login) {
-      setLoading(true);
-      fetch(`https://api.github.com/users/${login}`)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response;
-        })
-        .then(response => response.json())
-        .then(setData)
-        .then(() => setLoading(false))
-        .catch(setError)
-      // .finally(() => {
-      //   setLoading(false);
-      // });
-    }
-  }, [login]);
+  const { loading, data, error } = useFetch(`https://api.github.com/users/${login}`);
 
   if (error) {
     return (

@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import './App.css'
 import FetchApi from './components/FetchApi'
 import GitHubUser, { GitHubUserCache } from './components/GitHubUser'
 import List from './components/List'
 import { FixedSizeList as VirtualList } from 'react-window'
 import { faker } from '@faker-js/faker'
+import SearchForm from './components/SearchForm'
 
 const tahoe_peaks = [
   { name: "Freel Peak", elevation: 10891 },
@@ -28,11 +30,15 @@ function App() {
     </div>
   );
 
+  const [login, setLogin] = useState('moonhighway');
+
   return (
     <>
       <FetchApi />
       <GitHubUserCache login="moonhighway" />
-      <GitHubUser login="moonhighway" />
+
+      <SearchForm value={login} onSearch={setLogin} />
+      <GitHubUser login={login} />
 
       <List
         data={tahoe_peaks}
