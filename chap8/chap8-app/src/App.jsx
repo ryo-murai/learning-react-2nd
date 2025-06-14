@@ -2,6 +2,7 @@ import './App.css'
 import FetchApi from './components/FetchApi'
 import GitHubUser, { GitHubUserCache } from './components/GitHubUser'
 import List from './components/List'
+import { FixedSizeList as VirtualList } from 'react-window'
 import { faker } from '@faker-js/faker'
 
 const tahoe_peaks = [
@@ -18,11 +19,11 @@ const bigList = [...Array(5000)].map(() => ({
 }));
 
 function App() {
-  const renderItem = item => (
-    <div style={{ display: "flex" }}>
-      <img src={item.avatar} alt={item.name} width={50} />
+  const renderRow = ({ index, style }) => (
+    <div style={{ ...style, ...{ display: "flex" } }}>
+      <img src={bigList[index].avatar} alt={bigList[index].name} width={50} />
       <div>
-        <p>{item.name} - {item.email}</p>
+        <p>{bigList[index].name} - {bigList[index].email}</p>
       </div>
     </div>
   );
@@ -38,11 +39,14 @@ function App() {
         renderItem={item => `${item.name} (${item.elevation} ft)`}
         renderEmpty={<p>No peaks found.</p>}
       />
-      <List
-        data={bigList}
-        renderItem={renderItem}
-        renderEmpty={<p>No users found.</p>}
-      />
+      <VirtualList
+        height={500}
+        itemCount={bigList.length}
+        itemSize={50}
+        width="100%"
+      >
+        {renderRow}
+      </VirtualList>
     </>
   )
 }
