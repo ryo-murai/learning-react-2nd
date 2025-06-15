@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useFetch } from '../hooks/useFetch';
 import Fetch from './Fetch';
+import UserRepositories from './UserRepositories';
 
 const storage = localStorage;
 
@@ -22,9 +23,15 @@ function UserDetails({ data }) {
   return (
     <div className="github-user">
       <img src={data.avatar_url} alt={data.login} style={{ width: 200 }} />
-      <h1>{data.login}</h1>
-      <p>Name: {data.name}</p>
-      <p>Location: {data.location}</p>
+      <div>
+        <h1>{data.login}</h1>
+        <p>Name: {data.name}</p>
+        <p>Location: {data.location}</p>
+      </div>
+      <UserRepositories
+        login={data.login}
+        onSelect={repo => console.log(`Selected repo: ${repo}`)}
+      />
     </div>
   )
 };
