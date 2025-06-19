@@ -88,3 +88,28 @@ const bigList = [...Array(5000)].map(() => ({
   - https://fakerjs.dev/guide/usage.html
 * 参考2 非推奨の経緯
   - [colorsやfakerといったnpmパッケージの悪意あるコードが公開された事件について](https://qiita.com/SnykSec/items/23bcd8dc873239d2bece)
+
+
+  #### `react-markdown` のAPI変更
+
+  8.5.2章で登場
+
+##### 書籍
+
+```jsx
+import ReactMarkdown from 'react-markdown';
+
+// 中略
+
+return <ReactMarkdown source={markdown} />;
+```
+
+##### 修正版
+
+```jsx
+import Markdown from 'react-markdown';
+
+// 中略
+
+return <Markdown>{markdown}</Markdown>;
+```
