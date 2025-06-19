@@ -28,10 +28,6 @@ function UserDetails({ data }) {
         <p>Name: {data.name}</p>
         <p>Location: {data.location}</p>
       </div>
-      <UserRepositories
-        login={data.login}
-        onSelect={repo => console.log(`Selected repo: ${repo}`)}
-      />
     </div>
   )
 };

@@ -6,6 +6,8 @@ import List from './components/List'
 import { FixedSizeList as VirtualList } from 'react-window'
 import { faker } from '@faker-js/faker'
 import SearchForm from './components/SearchForm'
+import UserRepositories from './components/UserRepositories'
+import RepositoryReadme from './components/RepositoryReadme'
 
 const tahoe_peaks = [
   { name: "Freel Peak", elevation: 10891 },
@@ -30,15 +32,26 @@ function App() {
     </div>
   );
 
-  const [login, setLogin] = useState('moonhighway');
+  const [login, setLogin] = useState();
+  const [repo, setRepo] = useState();
 
   return (
     <>
-      <FetchApi />
-      <GitHubUserCache login="moonhighway" />
-
       <SearchForm value={login} onSearch={setLogin} />
-      <GitHubUser login={login} />
+
+      {login && <GitHubUser login={login} />}
+
+      {login && (
+        <UserRepositories
+          login={login}
+          selected={repo}
+          onSelect={setRepo}
+        />
+      )}
+
+      {login && repo && (
+        <RepositoryReadme login={login} repo={repo} />
+      )}
 
       <List
         data={tahoe_peaks}
