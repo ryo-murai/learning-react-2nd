@@ -32,42 +32,53 @@ function App() {
     </div>
   );
 
-  const [login, setLogin] = useState();
-  const [repo, setRepo] = useState();
+  const [login, setLogin] = useState("moonhighway");
+  const [repo, setRepo] = useState("");
 
-  return (
-    <>
-      <SearchForm value={login} onSearch={setLogin} />
+  const handleSearch = (query) => {
+    if (query) {
+      return setLogin(query);
+    } else {
+      setLogin('');
+      setRepo('');
+    }
+  }
 
-      {login && <GitHubUser login={login} />}
+  if (!login) {
+    return <SearchForm value={login} onSearch={handleSearch} />
+  } else {
+    return (
+      <>
+        <SearchForm value={login} onSearch={handleSearch} />
 
-      {login && (
+        <GitHubUser login={login} />
+
         <UserRepositories
           login={login}
           selected={repo}
           onSelect={setRepo}
         />
-      )}
 
-      {login && repo && (
-        <RepositoryReadme login={login} repo={repo} />
-      )}
+        {repo && (
+          <RepositoryReadme login={login} repo={repo} />
+        )}
 
-      <List
-        data={tahoe_peaks}
-        renderItem={item => `${item.name} (${item.elevation} ft)`}
-        renderEmpty={<p>No peaks found.</p>}
-      />
-      <VirtualList
-        height={500}
-        itemCount={bigList.length}
-        itemSize={50}
-        width="100%"
-      >
-        {renderRow}
-      </VirtualList>
-    </>
-  )
+        <List
+          data={tahoe_peaks}
+          renderItem={item => `${item.name} (${item.elevation} ft)`}
+          renderEmpty={<p>No peaks found.</p>}
+        />
+        <VirtualList
+          height={500}
+          itemCount={bigList.length}
+          itemSize={50}
+          width="100%"
+        >
+          {renderRow}
+        </VirtualList>
+      </>
+    );
+  }
 }
 
-export default App
+export default App;
