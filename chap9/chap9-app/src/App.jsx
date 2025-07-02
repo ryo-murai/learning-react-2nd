@@ -8,9 +8,17 @@ import Agreement from './components/Agreement'
 //import AppInternal from './AppInternal'
 import ErrorBoundary from './components/ErrorBoundary';
 import Status from './components/Status';
+import createResource from './hooks/createResource'
+import { threeSecondsToGnar } from './hooks/threeSecondsToGnar'
 
 const AppInternal = lazy(() => import('./AppInternal'));
 
+const resource = createResource(threeSecondsToGnar);
+
+function Gnar() {
+  const gnar = resource.read();
+  return <p>Gnar: {gnar.gnar}</p>;
+}
 
 function App() {
   const [agree, setAgree] = useState(false)
@@ -27,7 +35,7 @@ function App() {
         </ErrorBoundary>
         <Suspense fallback={<GridLoader />}>
           <ErrorBoundary>
-            <Status />
+            <Gnar />
           </ErrorBoundary>
         </Suspense>
       </>
